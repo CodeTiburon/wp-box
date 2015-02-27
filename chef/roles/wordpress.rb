@@ -15,6 +15,7 @@ override_attributes(
     },
     :php => {
       :install_method => 'package',
+      :ext_conf_dir => '/etc/php5/mods-available',
       :directives => {
           'default_charset'            => 'UTF-8',
           'mbstring.language'          => 'neutral',

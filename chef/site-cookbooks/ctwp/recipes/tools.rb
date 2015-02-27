@@ -18,6 +18,26 @@ gem_package "wordmove" do
 end
 
 #
+# Install xDebug php package
+#
+php_pear "xdebug" do
+  action :install
+  zend_extensions ['xdebug.so']
+  directives(
+    :remote_enable => "on",
+    :remote_connect_back => "on",
+    :idekey => "vagrant"
+  )
+end
+
+%w{apache2 cgi cli}.each do |mod|
+    link "/etc/php5/#{mod}/conf.d/xdebug.ini" do
+      to "#{node['php']['ext_conf_dir']}/xdebug.ini"
+    end
+end
+
+
+#
 # Setup WordPress i18n Tools
 #
 subversion "Checkout WordPress i18n tools." do
@@ -91,6 +111,9 @@ execute "phpcs-add-alias" do
   not_if "grep 'alias #{node[:ctwp][:phpcs][:alias]}=' #{node[:ctwp][:bash_profile]}"
 end
 
+#
+# Allow SSH connection to any host
+#
 execute "ssh-allow-hosts" do
   command <<-EOS
     echo "Host *\\nStrictHostKeyChecking no\\nUserKnownHostsFile=/dev/null" >> #{node[:ctwp][:ssh_config]}

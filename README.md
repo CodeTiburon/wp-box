@@ -18,7 +18,7 @@ It automatically installs additional tools:
 - [WP CLI](http://wp-cli.org/)
 - [WordMove](https://github.com/welaika/wordmove)
 - [WordPress CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
-
+- [PHP xDebug extension](http://xdebug.org/) - it is already configured for remote debugging from your IDE (idekey option is set to "vagrant")
 
 Wordpress plugins:
 - [WP DB Sync](https://github.com/wp-sync-db/wp-sync-db)
