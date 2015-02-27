@@ -1,0 +1,51 @@
+# Author: Nickolay U. Kofanov
+# Company: CodeTiburon
+# Date: 2015-02-25
+
+local:
+  vhost: "http://luxurysotogrande.local"
+  wordpress_path: "/vagrant/wordpress"
+
+  database:
+    name: "luxury"
+    user: "root"
+    password: "root"
+    host: "127.0.0.1"
+
+staging:
+  vhost: "http://luxurysotogrande.codetiburon.com"
+  wordpress_path: "/home/luxury/public_html"
+
+  database:
+    name: "luxury_sotogrande"
+    user: "luxury"
+    password: "luxury"
+    host: "195.191.25.60"
+    charset: "utf8"
+
+  exclude:
+    - ".git/"
+    - ".gitignore"
+    - ".sass-cache/"
+    - "bin/"
+    - "tmp/*"
+    - "Gemfile*"
+    - "Movefile"
+    - "wp-config.php"
+    - "wp-content/*.sql"
+
+  ssh:
+    host: "195.191.25.60"
+    user: "luxury"
+    password: "Zb4b22T4lPbt76h"
+    port: 22
+    rsync_options: "--chmod=0755" # Additional rsync options, optional
+
+  # ftp:
+  #   user: "user"
+  #   password: "password"
+  #   host: "host"
+  #   passive: true
+
+# production: # multiple environments can be specified
+#   [...]
