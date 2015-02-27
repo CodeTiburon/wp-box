@@ -20,7 +20,8 @@ It automatically installs additional tools:
 - [WordPress CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
 - [PHP xDebug extension](http://xdebug.org/) - it is already configured for remote debugging from your IDE (idekey option is set to "vagrant")
 
-Wordpress plugins:
+WordPress plugins:
+- [Meta Box](http://metabox.io/)
 - [WP DB Sync](https://github.com/wp-sync-db/wp-sync-db)
 - [WP Sync DB Media Files](https://github.com/wp-sync-db/wp-sync-db-media-files)
 - [GitHub Updater](https://github.com/afragen/github-updater)
