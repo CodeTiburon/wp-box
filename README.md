@@ -1,7 +1,7 @@
 # WordPress Application Box
 
 This is a scaffolding that should be used for each new WordPress project in our company.
-This box consist of:
+This box consists of:
 - Vagrant
 - Ubuntu 14.04 Trusty
 - Chef Solo
@@ -15,6 +15,12 @@ Server software:
 
 
 It automatically installs additional tools:
-- WP CLI
-- WordMove
-- WordPress CodeSniffer
+- [WP CLI](http://wp-cli.org/)
+- [WordMove](https://github.com/welaika/wordmove)
+- [WordPress CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
+
+
+Wordpress plugins:
+- [WP DB Sync](https://github.com/wp-sync-db/wp-sync-db)
+- [WP Sync DB Media Files](https://github.com/wp-sync-db/wp-sync-db-media-files)
+- [GitHub Updater](https://github.com/afragen/github-updater)
