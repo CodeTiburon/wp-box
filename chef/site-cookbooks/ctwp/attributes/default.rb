@@ -32,10 +32,10 @@ default[:ctwp][:dbname] = "wordpress"
 default[:ctwp][:dbprefix] = "wp_"
 default[:ctwp][:locale] = "en_US"
 default[:ctwp][:default_plugins] = {
-  'meta-box' => 'meta-box',
-  'github-updater-master' => "https://github.com/afragen/github-updater/archive/master.zip",
-  'wp-sync-db-master' => "https://github.com/wp-sync-db/wp-sync-db/archive/master.zip",
-  'wp-sync-db-media-files-master' => "https://github.com/wp-sync-db/wp-sync-db-media-files/archive/master.zip"
+  'meta-box' => "meta-box",
+  'github-updater' => "https://github.com/afragen/github-updater/archive/master.zip",
+  'wp-sync-db' => "https://github.com/wp-sync-db/wp-sync-db/archive/master.zip",
+  'wp-sync-db-media-files' => "https://github.com/wp-sync-db/wp-sync-db-media-files/archive/master.zip"
 }
 
 default[:ctwp][:debug_mode] = false

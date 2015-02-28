@@ -16,9 +16,10 @@ Server software:
 
 It automatically installs additional tools:
 - [WP CLI](http://wp-cli.org/)
+- [WP *makepot.php* i18n Tool](http://codex.wordpress.org/I18n_for_WordPress_Developers)
 - [WordMove](https://github.com/welaika/wordmove)
 - [WordPress CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)
-- [PHP xDebug extension](http://xdebug.org/) - it is already configured for remote debugging from your IDE (idekey option is set to "vagrant")
+- [PHP xDebug extension](http://xdebug.org/) - it is already configured for remote debugging from your IDE (*idekey* option is set to "vagrant")
 
 WordPress plugins:
 - [Meta Box](http://metabox.io/)

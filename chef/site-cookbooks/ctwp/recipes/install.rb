@@ -99,37 +99,56 @@ execute "wordpress-import-database" do
   action :nothing
 end
 
-
+#
+# Installs wordpress plugins
+#
 node[:ctwp][:default_plugins].each do |name, src|
   bash "wordpress-#{name}-install" do
     user node[:ctwp][:user]
     group node[:ctwp][:group]
     cwd File.join(docroot)
 
-    code "WP_CLI_CONFIG_PATH=#{Shellwords.shellescape(node[:ctwp][:cli][:cfg])} wp plugin install #{Shellwords.shellescape(src)} --activate"
+    code "WP_CLI_CONFIG_PATH=#{Shellwords.shellescape(node[:ctwp][:cli][:cfg])} wp plugin install #{Shellwords.shellescape(src)}"
     not_if { File.exists? File.join(docroot, 'wp-content', 'plugins', name) }
+
+    if src =~ /^https:\/\/github.com\//
+      notifies :run, "ruby_block[wordpress-#{name}-rename]", :immediately
+    end
+  end
+
+  ruby_block "wordpress-#{name}-rename" do
+    block do
+      plugins = ::File.join docroot, 'wp-content', 'plugins'
+      branch = ::File.basename src, ".zip"
+
+      ::File.rename File.join(plugins, name + '-' + branch), File.join(plugins, name)
+    end
+
+    action :nothing
   end
 end
 
-
+#
+# Change owner for document root
+#
 directory File.join(node[:ctwp][:docroot_dir], node[:ctwp][:homeurl]) do
   recursive true
   owner node[:ctwp][:user]
   group node[:ctwp][:group]
 end
 
-
+#
+# Configure Apache virtual hosts
+#
 apache_site "000-default" do
   enable false
 end
-
 
 web_app node[:ctwp][:host] do
   template "apache.site.erb"
   docroot node[:ctwp][:docroot_dir]
   server_name node[:fqdn]
 end
-
 
 bash "create-ssl-keys" do
   user "root"
