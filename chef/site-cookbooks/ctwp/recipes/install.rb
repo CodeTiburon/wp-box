@@ -108,7 +108,7 @@ node[:ctwp][:default_plugins].each do |name, src|
     group node[:ctwp][:group]
     cwd File.join(docroot)
 
-    code "WP_CLI_CONFIG_PATH=#{Shellwords.shellescape(node[:ctwp][:cli][:cfg])} wp plugin install #{Shellwords.shellescape(src)}"
+    code "WP_CLI_CONFIG_PATH=#{Shellwords.shellescape(node[:ctwp][:cli][:cfg])} wp plugin install #{Shellwords.shellescape(src)} --activate"
     not_if { File.exists? File.join(docroot, 'wp-content', 'plugins', name) }
 
     if src =~ /^https:\/\/github.com\//

@@ -3,6 +3,7 @@
 # Date: 2015-02-25
 
 packages = %w{gettext subversion lftp sshpass ruby-dev}
+gems_path = Dir.glob('/var/lib/gems/*').find { |file| File.directory? file } + '/gems'
 
 packages.each do |pkg|
   package pkg do
@@ -15,6 +16,13 @@ end
 #
 gem_package "wordmove" do
   action :install
+end
+
+# Fix for wordmove 1.2.0 version
+cookbook_file "#{gems_path}/wordmove-1.2.0/lib/wordmove/sql_adapter.rb" do
+  source "wordmove/sql_adapter.rb"
+  only_if { ::File.exists? "#{gems_path}/wordmove-1.2.0/lib/wordmove/sql_adapter.rb" }
+  mode 0755
 end
 
 #
@@ -120,6 +128,14 @@ execute "ssh-allow-hosts" do
   EOS
 
   not_if "grep 'UserKnownHostsFile=/dev/null' #{node[:ctwp][:ssh_config]}"
+end
+
+execute "lftp-allow-hosts" do
+  command <<-EOS
+    echo "\\nset ssl:verify-certificate off" >> #{node[:ctwp][:lftp_config]}
+  EOS
+
+  not_if "grep 'set ssl:verify-certificate off' #{node[:ctwp][:lftp_config]}"
 end
 
 execute "phpcs-set-config" do

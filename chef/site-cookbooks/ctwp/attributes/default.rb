@@ -6,6 +6,7 @@ default[:ctwp][:src_path]              = '/usr/local/share'
 default[:ctwp][:makepot]               = '/usr/bin/php /usr/local/share/wp-i18n/makepot.php'
 default[:ctwp][:bash_profile]          = '/home/vagrant/.bash_profile'
 default[:ctwp][:ssh_config]            = '/home/vagrant/.ssh/config'
+default[:ctwp][:lftp_config]           = '/etc/lftp.conf'
 
 default[:ctwp][:composer][:install]    = 'curl -sS https://getcomposer.org/installer | php'
 default[:ctwp][:composer][:link]       = '/usr/local/bin/composer'
@@ -33,6 +34,7 @@ default[:ctwp][:dbprefix] = "wp_"
 default[:ctwp][:locale] = "en_US"
 default[:ctwp][:default_plugins] = {
   'meta-box' => "meta-box",
+  'wp-mail-smtp' => "wp-mail-smtp",
   'github-updater' => "https://github.com/afragen/github-updater/archive/master.zip",
   'wp-sync-db' => "https://github.com/wp-sync-db/wp-sync-db/archive/master.zip",
   'wp-sync-db-media-files' => "https://github.com/wp-sync-db/wp-sync-db-media-files/archive/master.zip"
