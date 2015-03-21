@@ -3,7 +3,6 @@
 # Date: 2015-02-25
 
 packages = %w{gettext subversion lftp sshpass ruby-dev}
-gems_path = Dir.glob('/var/lib/gems/*').find { |file| File.directory? file } + '/gems'
 
 packages.each do |pkg|
   package pkg do
@@ -16,13 +15,19 @@ end
 #
 gem_package "wordmove" do
   action :install
+  notifies :create, "cookbook_file[wordmove-1.2.0/sql_adapter.rb]", :immediately
 end
 
 # Fix for wordmove 1.2.0 version
-cookbook_file "#{gems_path}/wordmove-1.2.0/lib/wordmove/sql_adapter.rb" do
+cookbook_file "wordmove-1.2.0/sql_adapter.rb" do
+  dest = '/var/lib/gems/1.9.1/gems/wordmove-1.2.0/lib/wordmove/sql_adapter.rb'
+
+  path dest
   source "wordmove/sql_adapter.rb"
-  only_if { ::File.exists? "#{gems_path}/wordmove-1.2.0/lib/wordmove/sql_adapter.rb" }
+  only_if { ::File.exists? dest }
   mode 0755
+
+  action :nothing
 end
 
 #
