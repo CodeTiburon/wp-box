@@ -2,7 +2,7 @@
 # Company: CodeTiburon
 # Date: 2015-02-25
 
-HOSTNAME = 'codetiburon.dev'
+HOSTNAME = 'wordpress.local'
 IP_ADDRESS = '192.168.33.10'
 SYNC_TYPE = 'nfs' # Synchronization type may be 'nfs' or 'rsync'
 
@@ -18,7 +18,7 @@ CHEF_DIR = './chef'
 DOCUMENT_ROOT = '/vagrant/wordpress'
 
 # Wordpress database tables prefix ('wp_' by default)
-DB_NAME = 'ct_wp'
+DB_NAME = 'wordpress'
 TABLE_PREFIX = 'wp_'
 
 # MySQL password for root user
