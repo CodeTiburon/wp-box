@@ -6,6 +6,7 @@
  - Added [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) is a Vagrant plugin which automatically installs the host's VirtualBox Guest Additions on the guest system.
  - Added `chef_gem` and `rvm` cookbooks as submodules.
  - Upgraded ruby version to 2.1.4 (required by Wordmove 1.3.1)
+ - .gitignore files were changed. All WP core and plugins are ingnored by default. Add own code to whitelist.
 
 [Full Changelog](https://github.com/CodeTiburon/wp-box/compare/v1.0.0...v1.1.0)
 
