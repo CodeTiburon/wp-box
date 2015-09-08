@@ -44,7 +44,7 @@ WordPress plugins:
 
 ## WP-BOX Installation
 
-1. Clone the repository
+1. Clone the repository. Please note:
    `chef_gem` and `rvm` cookbooks are added to main repository as submodules. Run `git submodule update --init` to clone these cookbooks.
 2. Install on of the following 
     1. If you want to use 'rsync' synchronization on Linux systems  
