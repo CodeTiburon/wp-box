@@ -3,7 +3,7 @@
 # Date: 2015-02-27
 
 name "development"
-description "Development envrionemnt"
+description "Development environment"
 
 override_attributes ({
   :ctwp => {

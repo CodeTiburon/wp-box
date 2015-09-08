@@ -27,12 +27,24 @@ override_attributes(
     },
     :mysql => {
       :bind_address => '0.0.0.0',
-    }
+    },
+    :rvm => {
+     :default_ruby => 'ruby-2.1.4',
+     :vagrant => {
+       :system_chef_solo => "/opt/chef/bin/chef-solo"
+     },
+     :gpg => { 
+       :keyserver => "hkp://keys.gnupg.net"
+     }
+       
+   }
 )
 
 run_list(
     "recipe[apt]",
     "recipe[build-essential]",
     "recipe[iptables]",
+    "recipe[rvm::system]",
+    #"recipe[rvm::vagrant]",
     "recipe[ctwp]"
 )

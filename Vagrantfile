@@ -2,7 +2,7 @@
 # Company: CodeTiburon
 # Date: 2015-02-25
 
-HOSTNAME = 'wordpress.local'
+HOSTNAME = 'codetiburon.dev'
 IP_ADDRESS = '192.168.33.10'
 SYNC_TYPE = 'nfs' # Synchronization type may be 'nfs' or 'rsync'
 
@@ -18,7 +18,7 @@ CHEF_DIR = './chef'
 DOCUMENT_ROOT = '/vagrant/wordpress'
 
 # Wordpress database tables prefix ('wp_' by default)
-DB_NAME = 'wordpress'
+DB_NAME = 'ct_wp'
 TABLE_PREFIX = 'wp_'
 
 # MySQL password for root user
@@ -33,9 +33,11 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = HOSTNAME
   config.vm.network :private_network, :ip => IP_ADDRESS
 
+  ## Shared folders
+
   if Vagrant::Util::Platform.windows?
     sync_options = {
-      :mount_options => ["dmode=775", "fmode=775"],
+      :mount_options => ["dmode=776", "fmode=775"],
       :owner => 'vagrant',
       :group => 'vagrant'
     }
@@ -52,12 +54,21 @@ Vagrant.configure(2) do |config|
       }
     else
       sync_options = {
-        :nfs => { :mount_options => ["dmode=775", "fmode=775"] }
+        :nfs => { :mount_options => ["dmode=776", "fmode=775"] }
       }
     end
   end
 
   config.vm.synced_folder ".", "/vagrant", sync_options
+
+  unless Vagrant::Util::Platform.windows?
+    if !Vagrant.has_plugin? 'vagrant-bindfs'
+      raise Vagrant::Errors::VagrantError.new,
+        "vagrant-bindfs missing, please install the plugin:\nvagrant plugin install vagrant-bindfs"
+    else
+      config.bindfs.bind_folder "/vagrant", "/vagrant", u: 'vagrant', g: 'vagrant'
+    end
+  end
 
   if Vagrant.has_plugin? 'vagrant-hostmanager'
     # update "host" file for host machine also
@@ -89,6 +100,10 @@ Vagrant.configure(2) do |config|
     vb.customize [ 'modifyvm', :id, '--memory', memory ]
     vb.customize [ 'modifyvm', :id, '--natdnshostresolver1', 'on']
     vb.customize [ 'modifyvm', :id, '--natdnsproxy1', 'on' ]
+  end
+
+  if Vagrant.has_plugin? 'vagrant-omnibus'
+    config.omnibus.chef_version = :latest 
   end
 
   config.vm.provision :chef_solo do |chef|

@@ -3,7 +3,7 @@
 # Date: 2015-02-27
 
 name "production"
-description "Production envrionemnt"
+description "Production environment"
 
 override_attributes(
   :ctwp => {

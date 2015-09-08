@@ -30,14 +30,20 @@ WordPress plugins:
 - [WP Sync DB Media Files](https://github.com/wp-sync-db/wp-sync-db-media-files)
 - [GitHub Updater](https://github.com/afragen/github-updater)
 
-## Recommendation
+## Vagrant plugins
 
-To automatically configure the `host` file on your guest and host (Linux only) machines it is recomended to install 'vagrant-hostmanager' plugin:  
+ - [vagrant-bindfs](https://github.com/gael-ian/vagrant-bindfs) for Linux/OSX hosts.
+ - [vagrant-omnibus](https://github.com/chef/vagrant-omnibus) is a vagrant plugin that ensures the desired version of Chef is installed via the platform-specific Omnibus packages.
+ - To automatically configure the `host` file on your guest and host (Linux only) machines it is recommended to install 'vagrant-hostmanager' plugin:  
 `vagrant plugin install vagrant-hostmanager`
+ - [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest) is a Vagrant plugin which automatically installs the host's VirtualBox Guest Additions on the guest system.
+
+
 
 ## WP-BOX Installation
 
 1. Clone the repository
+   `chef_gem` and `rvm` cookbooks are added to main repository as submodules. Run `git submodule update --init` to clone these cookbooks.
 2. Install on of the following 
     1. If you want to use 'rsync' synchronization on Linux systems  
 Ubuntu: `apt-get -y install rsync`  

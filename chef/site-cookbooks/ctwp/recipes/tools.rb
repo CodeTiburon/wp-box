@@ -2,7 +2,7 @@
 # Company: CodeTiburon
 # Date: 2015-02-25
 
-packages = %w{gettext subversion lftp sshpass ruby-dev}
+packages = %w{gettext subversion lftp sshpass}
 
 packages.each do |pkg|
   package pkg do
@@ -11,9 +11,14 @@ packages.each do |pkg|
 end
 
 #
+# Set default ruby
+#
+rvm_default_ruby "ruby-2.1.4"
+
+#
 # Install wordmove https://github.com/welaika/wordmove
 #
-gem_package "wordmove" do
+rvm_gem "wordmove" do
   action :install
   notifies :create, "cookbook_file[wordmove-1.2.0/sql_adapter.rb]", :immediately
 end
