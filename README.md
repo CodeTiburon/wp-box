@@ -1,3 +1,5 @@
+Previous version of WP box is available as release [v1.0.0](https://github.com/CodeTiburon/wp-box/releases/tag/v1.0.0)
+
 # WordPress Application Box
 
 This is a scaffolding that should be used for each new WordPress project in our company.
