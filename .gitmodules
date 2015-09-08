@@ -1,0 +1,6 @@
+[submodule "chef/cookbooks/rvm"]
+	path = chef/cookbooks/rvm
+	url = git://github.com/fnichol/chef-rvm.git
+[submodule "chef/cookbooks/chef_gem"]
+	path = chef/cookbooks/chef_gem
+	url = https://github.com/hw-cookbooks/chef_gem
