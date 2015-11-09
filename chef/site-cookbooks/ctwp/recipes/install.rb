@@ -20,11 +20,6 @@ bash "wordpress-core-download" do
   not_if { ::File.exists? File.join docroot, 'wp-login.php' }
 end
 
-file File.join(docroot, "wp-config.php") do
-  action :delete
-  backup false
-end
-
 bash "wordpress-core-config" do
   user node[:ctwp][:user]
   group node[:ctwp][:group]
@@ -39,18 +34,19 @@ bash "wordpress-core-config" do
     --dbprefix=#{Shellwords.shellescape(node[:ctwp][:dbprefix])} \\
     --locale=#{Shellwords.shellescape(node[:ctwp][:locale])} \\
     --extra-php <<-PHP
-/** Addinional configurations */
-define( 'WP_HOME', 'http://#{File.join(node[:ctwp][:host], node[:ctwp][:homeurl]).sub(/\/$/, '')}' );
-define( 'WP_SITEURL', 'http://#{File.join(node[:ctwp][:host], node[:ctwp][:siteurl]).sub(/\/$/, '')}' );
-define( 'WP_POST_REVISIONS', 3 );
-define( 'AUTOSAVE_INTERVAL', 300 );
-define( 'WP_DEBUG', #{node[:ctwp][:debug_mode]} );
-define( 'JETPACK_DEV_DEBUG', #{node[:ctwp][:debug_mode]} );
-define( 'FORCE_SSL_ADMIN', #{node[:ctwp][:force_ssl_admin]} );
-define( 'SAVEQUERIES', #{node[:ctwp][:savequeries]} );
-PHP
-EOH
-# end of "wordpress-core-config" bash resource
+  /** Addinional configurations */
+  define( 'WP_HOME', 'http://#{File.join(node[:ctwp][:host], node[:ctwp][:homeurl]).sub(/\/$/, '')}' );
+  define( 'WP_SITEURL', 'http://#{File.join(node[:ctwp][:host], node[:ctwp][:siteurl]).sub(/\/$/, '')}' );
+  define( 'WP_POST_REVISIONS', 3 );
+  define( 'AUTOSAVE_INTERVAL', 300 );
+  define( 'WP_DEBUG', #{node[:ctwp][:debug_mode]} );
+  define( 'JETPACK_DEV_DEBUG', #{node[:ctwp][:debug_mode]} );
+  define( 'FORCE_SSL_ADMIN', #{node[:ctwp][:force_ssl_admin]} );
+  define( 'SAVEQUERIES', #{node[:ctwp][:savequeries]} );
+  PHP
+  EOH
+
+  not_if { File.exists? File.join(docroot, 'wp-config.php') }
 end
 
 # Create database if it does not exist
