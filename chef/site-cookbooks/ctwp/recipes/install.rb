@@ -5,6 +5,9 @@
 require 'shellwords'
 docroot = ::File.join node[:ctwp][:docroot_dir], node[:ctwp][:siteurl]
 
+# Add rules to the iptable service
+iptables_rule "iptables.rules"
+
 # Install worpdress if it doesn't exist
 bash "wordpress-core-download" do
   user node[:ctwp][:user]
@@ -160,6 +163,3 @@ bash "create-ssl-keys" do
   not_if { File.size? File.join(node[:apache][:dir], 'ssl', 'server.crt') }
   notifies :restart, "service[apache2]"
 end
-
-
-iptables_rule "iptables.rules"
