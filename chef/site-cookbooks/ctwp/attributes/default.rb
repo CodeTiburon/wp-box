@@ -32,6 +32,7 @@ default[:ctwp][:dbhost] = "localhost"
 default[:ctwp][:dbname] = "wordpress"
 default[:ctwp][:dbprefix] = "wp_"
 default[:ctwp][:locale] = "en_US"
+default[:ctwp][:install_default_plugins] = true
 default[:ctwp][:default_plugins] = {
   'meta-box' => "meta-box",
   'wp-mail-smtp' => "wp-mail-smtp",
