@@ -103,7 +103,7 @@ end
 #
 if node[:ctwp][:install_default_plugins]
   node[:ctwp][:default_plugins].each do |name, src|
-    command "wordpress-#{name}-install" do
+    bash "wordpress-#{name}-install" do
       user node[:ctwp][:user]
       group node[:ctwp][:group]
       cwd File.join(docroot)
