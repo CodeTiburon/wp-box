@@ -86,4 +86,4 @@ WordPress application Box is available under the [MIT license](https://github.co
 
 Have a question? Please [open an issue](https://github.com/CodeTiburon/wp-box/issues/new)! 
 
-Copyright © 2014-2016 [Netguru](https://codetiburon.com)
+Copyright © 2014-2016 [CodeTiburon](https://codetiburon.com)
