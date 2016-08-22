@@ -80,7 +80,7 @@ Now run `vagrant up`:
 
 # License
 
-WordPress application Box is available under the [MIT license](https://github.com/CodeTiburon/wp-box/blob/master/LICENSE.md). 
+WordPress Application Box is available under the [MIT license](https://github.com/CodeTiburon/wp-box/blob/master/LICENSE.md). 
 
 # More Info
 
