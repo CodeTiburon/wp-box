@@ -77,3 +77,13 @@ Now run `vagrant up`:
 - DB user: root
 - DB password: root
 - Table prefix: wp_
+
+# License
+
+WordPress application Box is available under the [MIT license](https://github.com/CodeTiburon/wp-box/blob/master/LICENSE.md). 
+
+# More Info
+
+Have a question? Please [open an issue](https://github.com/CodeTiburon/wp-box/issues/new)! 
+
+Copyright © 2014-2016 [Netguru](https://codetiburon.com)
